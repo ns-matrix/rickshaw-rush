@@ -5,7 +5,35 @@
 <div class="hud"><div class="card metric"><small>Speed</small><b><span id="speed">0</span><small> km/h</small></b></div><div class="card metric"><small>Fares</small><b>₹<span id="cash">0</span></b></div><div class="card metric"><small>Distance</small><b><span id="distance">0.00</span><small> km</small></b></div><div class="card mission"><div class="label">Passenger mission</div><strong id="mission">Find passenger</strong><span id="desc">Follow the green pickup marker</span></div></div>
 <div class="tools"><button class="btn" id="zin">＋</button><button class="btn" id="zout">−</button><button class="btn" id="tilt">3D</button><button class="btn" id="follow">◎</button><button class="btn" id="reset">↻</button></div>
 <div class="info" id="status">Loading road map…</div><div class="bottom"><div class="cluster"><button class="btn steer" id="left">◀</button><button class="btn steer" id="right">▶</button></div><div class="cluster"><button class="btn pedal brake" id="brake">BRAKE</button><button class="btn pedal go" id="go">GO ▲</button></div></div>
-<div class="overlay" id="overlay"><div class="menu"><div class="logo">RICKSHAW RUSH</div><p>Drive through Mumbai neighbourhoods. Live street tiles need internet; if routing is offline, a local practice route lets you start driving.</p><label for="areaSelect" class="small">CHOOSE DRIVING AREA</label><select class="location-select" id="areaSelect"><option value="Powai">Powai & IIT Bombay</option><option value="Andheri">Andheri East</option><option value="MarineDrive">Marine Drive & South Mumbai</option></select><button class="start" id="start">START DRIVING</button><p class="small">Uses OpenFreeMap street tiles and OpenStreetMap-based OSRM road routing. Google Maps requires a Google Maps Platform API key and applicable billing. Keep auto-rickshaw-2024.glb beside index.html.</p><p class="small" id="assetError"></p></div></div>
+<div class="overlay" id="overlay"><div class="menu"><div class="logo">RICKSHAW RUSH</div><p>Drive through Mumbai neighbourhoods. Live street tiles need internet; if routing is offline, a local practice route lets you start driving.</p><label for="areaSelect" class="small">CHOOSE DRIVING AREA</label><select class="location-select" id="areaSelect"><option value="Powai">Powai & IIT Bombay</option><option value="Andheri">Andheri East</option><option value="MarineDrive">Marine Drive & South Mumbai</option></select><button class="start" id="start">START DRIVING</button><button class="start" id="downloadMap" style="margin-top:10px;background:#d7f3df;color:#102318">DOWNLOAD MAP FOR OFFLINE</button><p class="small" id="offlineStatus">Save the selected area on this device for offline play.</p><p class="small">Uses OpenFreeMap street tiles and OpenStreetMap-based OSRM road routing. Google Maps requires a Google Maps Platform API key and applicable billing. Keep auto-rickshaw-2024.glb beside index.html.</p><p class="small" id="assetError"></p></div></div>
+<script>
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+ navigator.serviceWorker.register('./service-worker.js').catch(e => console.warn('Offline cache unavailable:', e));
+}
+(function(){
+ const button=document.getElementById('downloadMap'),area=document.getElementById('areaSelect'),status=document.getElementById('offlineStatus');
+ if(!button)return;
+ button.addEventListener('click',async()=>{
+  if(!('serviceWorker' in navigator)){if(status)status.textContent='Offline map downloads need a supported browser.';return;}
+  button.disabled=true;button.textContent='PREPARING MAP…';
+  if(status)status.textContent='Connecting to map service… keep this page open.';
+  try{
+   await navigator.serviceWorker.ready;
+   const worker=navigator.serviceWorker.controller||(await navigator.serviceWorker.ready).active;
+   if(!worker)throw Error('Offline map worker is not ready. Reload this page and try again.');
+   const centers={Powai:[72.9052,19.1197],Andheri:[72.8628,19.1197],MarineDrive:[72.8235,18.9432]};
+   const key=area?area.value:'Powai',channel=new MessageChannel();
+   channel.port1.onmessage=e=>{
+    if(e.data?.type==='PROGRESS'&&status)status.textContent='Saving map tiles… '+e.data.done+'/'+e.data.total;
+    if(e.data?.type==='DONE'){if(status)status.textContent='Offline map saved for '+key+'. This browser can reuse the cached map.';button.textContent='MAP SAVED ✓';button.disabled=false;}
+    if(e.data?.type==='ERROR'){if(status)status.textContent='Map download failed: '+e.data.message;button.textContent='RETRY MAP DOWNLOAD';button.disabled=false;}
+   };
+   worker.postMessage({type:'DOWNLOAD_AREA',area:key,center:centers[key]||centers.Powai},[channel.port2]);
+   if(status)status.textContent='Map download started. Keep the game open until it says it is ready.';
+  }catch(e){if(status)status.textContent=e.message||'Could not start offline download.';button.textContent='RETRY MAP DOWNLOAD';button.disabled=false;}
+ });
+})();
+</script>
 <script>
 /* Register the start control before any external module/CDN loads. */
 (function(){
