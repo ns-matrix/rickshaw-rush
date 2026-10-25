@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "note": "Location presets and mission coordinates for Rickshaw Rush. These are not offline map tiles; the live basemap still loads from OpenFreeMap and routes from OSRM when internet is available.",
+  "areas": [
+    {
+      "id": "Powai",
+      "name": "Powai & IIT Bombay",
+      "center": [
+        72.9052,
+        19.1197
+      ],
+      "zoom": 17.5,
+      "missions": [
+        {
+          "pickup": [
+            72.90235,
+            19.10905
+          ],
+          "dropoff": [
+            72.9086,
+            19.1174
+          ],
+          "pickupName": "Sangharsh Nagar Gate",
+          "dropoffName": "Powai Market"
+        },
+        {
+          "pickup": [
+            72.9081,
+            19.1192
+          ],
+          "dropoff": [
+            72.9133,
+            19.1334
+          ],
+          "pickupName": "Powai Lake Road",
+          "dropoffName": "IIT Bombay"
+        },
+        {
+          "pickup": [
+            72.89458,
+            19.10915
+          ],
+          "dropoff": [
+            72.9052,
+            19.1197
+          ],
+          "pickupName": "Chandivali Junction",
+          "dropoffName": "Powai"
+        }
+      ]
+    },
+    {
+      "id": "Andheri",
+      "name": "Andheri East",
+      "center": [
+        72.8697,
+        19.1197
+      ],
+      "zoom": 17.5,
+      "missions": [
+        {
+          "pickup": [
+            72.8679,
+            19.1168
+          ],
+          "dropoff": [
+            72.8736,
+            19.1196
+          ],
+          "pickupName": "Andheri Station East",
+          "dropoffName": "MIDC Junction"
+        },
+        {
+          "pickup": [
+            72.8731,
+            19.119
+          ],
+          "dropoff": [
+            72.8609,
+            19.1144
+          ],
+          "pickupName": "MIDC Road",
+          "dropoffName": "Marol Naka"
+        },
+        {
+          "pickup": [
+            72.8609,
+            19.1144
+          ],
+          "dropoff": [
+            72.8697,
+            19.1197
+          ],
+          "pickupName": "Marol Naka",
+          "dropoffName": "Andheri East"
+        }
+      ]
+    },
+    {
+      "id": "MarineDrive",
+      "name": "Marine Drive & South Mumbai",
+      "center": [
+        72.8238,
+        18.9432
+      ],
+      "zoom": 17.5,
+      "missions": [
+        {
+          "pickup": [
+            72.8238,
+            18.9432
+          ],
+          "dropoff": [
+            72.8292,
+            18.9389
+          ],
+          "pickupName": "Marine Drive",
+          "dropoffName": "Churchgate"
+        },
+        {
+          "pickup": [
+            72.8292,
+            18.9389
+          ],
+          "dropoff": [
+            72.8321,
+            18.9442
+          ],
+          "pickupName": "Churchgate",
+          "dropoffName": "Oval Maidan"
+        },
+        {
+          "pickup": [
+            72.8321,
+            18.9442
+          ],
+          "dropoff": [
+            72.8238,
+            18.9432
+          ],
+          "pickupName": "Oval Maidan",
+          "dropoffName": "Marine Drive"
+        }
+      ]
+    }
+  ]
+}
