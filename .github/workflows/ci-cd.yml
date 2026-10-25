@@ -1,0 +1,41 @@
+name: Rickshaw Rush CI/CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify app files
+        run: |
+          test -s index.html
+          echo "index.html exists"
+          if grep -q "auto-rickshaw-2024.glb" index.html; then
+            echo "App expects the GLB model at /auto-rickshaw-2024.glb"
+          fi
+
+      - name: Set up Vercel project
+        run: |
+          mkdir -p .vercel
+          printf '{"projectId":"%s","orgId":"%s"}' "${{ secrets.VERCEL_PROJECT_ID }}" "${{ secrets.VERCEL_ORG_ID }}" > .vercel/project.json
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Pull production settings
+        run: vercel pull --yes --environment=production --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Build production deployment
+        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+
+      - name: Deploy production
+        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
