@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "roadNetwork": "OpenStreetMap",
+    "routingEngine": "OSRM public demo server",
+    "attribution": "© OpenStreetMap contributors",
+    "note": "These are route waypoint presets. The actual road-following polyline is requested at runtime from OSRM; this file does not contain offline map tiles."
+  },
+  "areas": [
+    {
+      "id": "Powai",
+      "label": "Powai · IIT Bombay · Chandivali",
+      "center": [
+        72.9052,
+        19.1197
+      ],
+      "routeWaypoints": [
+        [
+          72.9052,
+          19.1197
+        ],
+        [
+          72.9133,
+          19.1334
+        ],
+        [
+          72.89458,
+          19.10915
+        ],
+        [
+          72.9052,
+          19.1197
+        ]
+      ],
+      "missions": [
+        {
+          "pickup": [
+            72.90235,
+            19.10905
+          ],
+          "dropoff": [
+            72.9086,
+            19.1174
+          ],
+          "pickupName": "Sangharsh Nagar Gate",
+          "dropoffName": "Powai Market"
+        },
+        {
+          "pickup": [
+            72.9081,
+            19.1192
+          ],
+          "dropoff": [
+            72.9133,
+            19.1334
+          ],
+          "pickupName": "Powai Lake Road",
+          "dropoffName": "IIT Bombay"
+        },
+        {
+          "pickup": [
+            72.89458,
+            19.10915
+          ],
+          "dropoff": [
+            72.9052,
+            19.1197
+          ],
+          "pickupName": "Chandivali Junction",
+          "dropoffName": "Powai"
+        }
+      ]
+    },
+    {
+      "id": "Andheri",
+      "label": "Andheri East · Marol · MIDC",
+      "center": [
+        72.8697,
+        19.1197
+      ],
+      "routeWaypoints": [
+        [
+          72.8697,
+          19.1197
+        ],
+        [
+          72.8609,
+          19.1144
+        ],
+        [
+          72.8736,
+          19.1196
+        ],
+        [
+          72.8697,
+          19.1197
+        ]
+      ],
+      "missions": [
+        {
+          "pickup": [
+            72.8679,
+            19.1168
+          ],
+          "dropoff": [
+            72.8736,
+            19.1196
+          ],
+          "pickupName": "Andheri Station East",
+          "dropoffName": "MIDC Junction"
+        },
+        {
+          "pickup": [
+            72.8731,
+            19.119
+          ],
+          "dropoff": [
+            72.8609,
+            19.1144
+          ],
+          "pickupName": "MIDC Road",
+          "dropoffName": "Marol Naka"
+        },
+        {
+          "pickup": [
+            72.8609,
+            19.1144
+          ],
+          "dropoff": [
+            72.8697,
+            19.1197
+          ],
+          "pickupName": "Marol Naka",
+          "dropoffName": "Andheri East"
+        }
+      ]
+    },
+    {
+      "id": "MarineDrive",
+      "label": "Marine Drive · Churchgate · Oval Maidan",
+      "center": [
+        72.8238,
+        18.9432
+      ],
+      "routeWaypoints": [
+        [
+          72.8238,
+          18.9432
+        ],
+        [
+          72.8292,
+          18.9389
+        ],
+        [
+          72.8321,
+          18.9442
+        ],
+        [
+          72.8238,
+          18.9432
+        ]
+      ],
+      "missions": [
+        {
+          "pickup": [
+            72.8238,
+            18.9432
+          ],
+          "dropoff": [
+            72.8292,
+            18.9389
+          ],
+          "pickupName": "Marine Drive",
+          "dropoffName": "Churchgate"
+        },
+        {
+          "pickup": [
+            72.8292,
+            18.9389
+          ],
+          "dropoff": [
+            72.8321,
+            18.9442
+          ],
+          "pickupName": "Churchgate",
+          "dropoffName": "Oval Maidan"
+        },
+        {
+          "pickup": [
+            72.8321,
+            18.9442
+          ],
+          "dropoff": [
+            72.8238,
+            18.9432
+          ],
+          "pickupName": "Oval Maidan",
+          "dropoffName": "Marine Drive"
+        }
+      ]
+    }
+  ]
+}
