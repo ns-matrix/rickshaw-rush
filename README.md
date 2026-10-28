@@ -37,3 +37,10 @@ The workflow cannot deploy until these secrets are configured. If Vercel's nativ
 
 ## Deployment
 Static site; repository root is the project root and no application build step is required.
+
+
+## Real Map Navigation Build
+
+- **Play the uploaded navigation build:** https://rickshaw-rush-tau.vercel.app/real-map-navigation.html
+- **Source file:** [real-map-navigation.html](./real-map-navigation.html)
+- Real street tiles and OSRM route guidance require an internet connection.
